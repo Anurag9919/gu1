@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moving in Waves | Premium Yoga</title>
+    <!-- Google Fonts for a Sophisticated Aesthetic -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Variables for Premium Theme Toggling */
+        :root {
+            --bg-color: #F9F6F0; 
+            --text-color: #2C3531; 
+            --accent-color: #5C715E; 
+            --card-bg: #FFFFFF;
+            --nav-bg: rgba(249, 246, 240, 0.9);
+            --border-color: #E0DCD3;
+            --shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #121212;
+            --text-color: #EAEAEA;
+            --accent-color: #8CA38F;
+            --card-bg: #1A1A1A;
+            --nav-bg: rgba(18, 18, 18, 0.9);
+            --border-color: #2A2A2A;
+            --shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .logo {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 8%;
+            background-color: var(--nav-bg);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .logo {
+            font-size: 2rem;
+            letter-spacing: 1px;
+            color: var(--accent-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links li a {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 700;
+            font-size: 0.85rem;
+        }
+        
+        .nav-links li a:hover {
+            color: var(--accent-color);
+        }
+
+        .theme-btn {
+            background: transparent;
+            border: 2px solid var(--text-color);
+            color: var(--text-color);
+            padding: 0.5rem 1.5rem;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .theme-btn:hover {
+            background-color: var(--text-color);
+            color: var(--bg-color);
+        }
+
+        /* Sections */
+        section {
+            padding: 8rem 8% 5rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            color: var(--accent-color);
+        }
+
+        /* Hero Section */
+        #home {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url('https://picsum.photos/id/1050/1920/1080') center/cover no-repeat fixed;
+            color: #FFFFFF;
+            align-items: center;
+            text-align: center;
+        }
+
+        #home h1 {
+            font-size: 5.5rem;
+            margin-bottom: 1rem;
+            letter-spacing: 3px;
+            line-height: 1.1;
+        }
+
+        #home p {
+            font-size: 1.4rem;
+            max-width: 700px;
+            margin-bottom: 3rem;
+            font-weight: 300;
+        }
+
+        .cta-btn {
+            background-color: #FFFFFF;
+            color: #121212;
+            padding: 1.2rem 3rem;
+            border-radius: 50px;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            transition: transform 0.3s ease;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        /* Grid Layouts */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 3rem;
+            width: 100%;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 2.5rem;
+        }
+
+        .card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        /* About Section */
+        #about {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 5rem;
+        }
+
+        .about-img {
+            flex: 1;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text p {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-color);
+            opacity: 0.9;
+        }
+
+        /* Contact Section */
+        #contact {
+            align-items: center;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            width: 100%;
+            max-width: 600px;
+            background-color: var(--card-bg);
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+        }
+
+        .contact-form input, .contact-form textarea {
+            padding: 1.2rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: inherit;
+            font-size: 1rem;
+        }
+
+        .contact-form input:focus, .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+
+        .contact-form button {
+            background-color: var(--accent-color);
+            color: #FFF;
+            border: none;
+            padding: 1.2rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: opacity 0.3s ease;
+        }
+
+        .contact-form button:hover {
+            opacity: 0.9;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem;
+            background-color: var(--card-bg);
+            border-top: 1px solid var(--border-color);
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            #about { flex-direction: column; text-align: center; }
+            #home h1 { font-size: 4rem; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">Moving in Waves</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#blog">Blog</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <button class="theme-btn" id="theme-toggle">Dark Mode</button>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home">
+        <h1>Command Your Calm</h1>
+        <p>Master your mind and body. Experience discipline and flow seamlessly integrated into a powerful yoga practice.</p>
+        <a href="#services" class="cta-btn">Begin The Journey</a>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+        <h2 class="section-title">Our Expertise</h2>
+        <div class="grid-container">
+            <div class="card">
+                <img src="https://picsum.photos/id/1051/800/500" alt="Vinyasa Flow">
+                <div class="card-content">
+                    <h3>Vinyasa Dynamics</h3>
+                    <p>Build unyielding strength and heat. A continuous flow that commands total focus and physical mastery.</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://picsum.photos/id/1052/800/500" alt="Meditation">
+                <div class="card-content">
+                    <h3>Mindful Resilience</h3>
+                    <p>Train your mind to remain stoic and calm under pressure through deep breathwork and meditation.</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://picsum.photos/id/1053/800/500" alt="Private Sessions">
+                <div class="card-content">
+                    <h3>1-on-1 Coaching</h3>
+                    <p>Exclusive, tailored sessions designed to optimize your performance, posture, and inner strength.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <img src="https://picsum.photos/id/1054/1000/1000" alt="Yoga Teacher" class="about-img">
+        <div class="about-text">
+            <h2 class="section-title" style="text-align: left;">The Philosophy</h2>
+            <p>At Moving in Waves, we don't just stretch; we engineer better versions of ourselves. My approach strips away the noise and focuses on raw, functional movement and unwavering mental clarity.</p>
+            <p>With years of rigorous practice, I provide a space where you are challenged to break limitations. This is about building a foundation of strength that carries over into every aspect of your life.</p>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog">
+        <h2 class="section-title">Insights & Strategy</h2>
+        <div class="grid-container">
+            <div class="card">
+                <img src="https://picsum.photos/id/1055/800/500" alt="Tea and Journal">
+                <div class="card-content">
+                    <h3>The 5 AM Advantage</h3>
+                    <p>Why controlling your morning routine is the ultimate hack for commanding the rest of your day.</p>
+                    <a href="#" style="color: var(--accent-color); font-weight: 700; margin-top: 1rem; display: inline-block;">Read Article &rarr;</a>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://picsum.photos/id/1056/800/500" alt="Stretching">
+                <div class="card-content">
+                    <h3>Posture is Power</h3>
+                    <p>How aligning your spine not only fixes physical ailments but projects ultimate confidence in any room.</p>
+                    <a href="#" style="color: var(--accent-color); font-weight: 700; margin-top: 1rem; display: inline-block;">Read Article &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2 class="section-title">Initiate Contact</h2>
+        <form class="contact-form" onsubmit="event.preventDefault(); alert('Message successfully delivered. We will be in touch.');">
+            <input type="text" placeholder="Full Name" required>
+            <input type="email" placeholder="Professional Email" required>
+            <textarea rows="6" placeholder="Detail your goals here..." required></textarea>
+            <button type="submit">Submit Inquiry</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Moving in Waves. Commanding excellence.</p>
+    </footer>
+
+    <!-- JS for Theme Toggle -->
+    <script>
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const body = document.documentElement;
+
+        themeToggleBtn.addEventListener('click', () => {
+            if (body.getAttribute('data-theme') === 'dark') {
+                body.removeAttribute('data-theme');
+                themeToggleBtn.textContent = 'Dark Mode';
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                themeToggleBtn.textContent = 'Light Mode';
+            }
+        });
+    </script>
+</body>
+</html>
